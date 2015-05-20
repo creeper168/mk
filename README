@@ -1,0 +1,22 @@
+
+
+usage:
+
+1,put your files in fs directory
+
+2,execute mk.sh to generate image.iso
+
+3,create vmware vm with image.iso as CD, cf.vmdk as SATA harddisk
+
+
+NOTE:
+
+1,iso/isolinux.cfg  is the parameter to linux kernel
+
+2,gdb is contained 
+
+3,kdb is enable(use keyboad), can modify iso/isolinux.cfg to change to serial port
+
+
+
+
