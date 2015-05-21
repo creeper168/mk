@@ -1,8 +1,29 @@
 #!/bin/bash
 
 DEBUG="quiet"
-if [ "$1" == "-d" ]; then
-DEBUG="debug"
-fi
+QEMU_CMD="qemu-system-x86_64"
 
-qemu-system-x86_64 -m 256M -kernel iso/linux -nographic  -net nic,vlan=0 -net tap,vlan=0 -hda cf.vmdk -initrd iso/initrd.img -append "console=ttyS0 rdinit=/sbin/init kgdboc=ttyS0 $DEBUG"  
+while test $# -gt 0; do
+case "$1" in
+	-d|--debug)
+		DEBUG="debug"
+		shift
+	;;
+	-k|--kvm)
+		QEMU_CMD="/usr/libexec/qemu-kvm"
+		shift
+	;;
+	*)
+		break
+	;;
+esac
+done
+
+[ ! -f cf.qcow2 ] &&  qemu-img convert -f vmdk cf.vmdk  -O qcow2 cf.vmdk cf.qcow2 
+
+${QEMU_CMD} -m 256M -kernel iso/linux -nographic  	\
+	-net nic,vlan=0 -net tap,vlan=0 		\
+	-hda cf.qcow2 -initrd iso/initrd.img		\
+	 -append "console=ttyS0 rdinit=/sbin/init kgdboc=ttyS0 ${DEBUG}"  
+
+rm -f cf.qcow2

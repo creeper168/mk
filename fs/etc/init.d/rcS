@@ -6,7 +6,7 @@ mount -t devpts devpts /dev/pts
 mount -t sysfs sysfs /sys 
 mount -t ext2 /dev/sda1 /mnt 
 
-chmod +s /bin/busybox
+chmod +s /bin/su
 
 ifconfig lo up 
 

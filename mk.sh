@@ -3,7 +3,7 @@
 #make sure genisoimage installed
 [ ! -f /usr/bin/genisoimage ] &&\
  ( rpm -i rpms/libusal-1.1.11-22.el7.x86_64.rpm 2>/dev/null; rpm -i rpms/genisoimage-1.1.11-22.el7.x86_64.rpm 2>/dev/null)
-[ ! -f /usr/bin/isohybrid ] && rpm -i  rpms/syslinux-4.05-12.el7.x86_64.rpm 2>/dev/null
+[ ! -f /usr/bin/isohybrid ] && rpm -i --nodeps rpms/syslinux-4.05-12.el7.x86_64.rpm 2>/dev/null
 
 ( [ ! -x /usr/bin/genisoimage ] || [ ! -x /usr/bin/isohybrid ]) && echo "error!!!" && exit 1
 
