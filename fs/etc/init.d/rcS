@@ -15,6 +15,3 @@ hostname test
 
 zebra -d -A 127.0.0.1
 
-
-login
-

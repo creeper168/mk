@@ -32,5 +32,7 @@ if [ -f image.iso ] ; then
 	isohybrid image.iso 2>/dev/null
 fi
 
-rm -f iso/initrd.img
+if [ "$1" != "-k" ]; then
+	rm -f iso/initrd.img
+fi
 
