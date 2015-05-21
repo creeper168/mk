@@ -17,6 +17,11 @@ NOTE:
 
 3,内核调试工具kdb默认使能了，可以修改/iso/isolinux.cfg 关闭或设置串口作为终端
 
+4,user:wyz,pass:1 登录到vtysh（quagga）
+
+5,user:root,pass:1 登录到linux sh
+
+
 
 
 

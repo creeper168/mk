@@ -2,16 +2,21 @@
 
 
 mount -t proc /proc /proc
+mount -t devpts devpts /dev/pts 
 mount -t sysfs sysfs /sys 
 mount -t ext2 /dev/sda1 /mnt 
 
-ifconfig lo up 
-ifconfig eth0 up
-ifconfig eth0 172.20.0.2 netmask 255.255.255.0
+chmod +s /bin/busybox
 
-touch /usr/local/etc/zebra.conf
+ifconfig lo up 
+
+ZEBRA_CONFIG=/mnt/zebra.conf
+touch $ZEBRA_CONFIG
+chmod 777 /mnt -R 
 
 hostname test
 
-zebra -d -A 127.0.0.1
+zebra -d -A 127.0.0.1 -f $ZEBRA_CONFIG
 
+telnetd
+httpd  -h /html
