@@ -2,20 +2,20 @@
 
 usage:
 
-1,put your files in fs directory
+1,把要打包到交换机的文件放到fs文件夹对应目录
 
-2,execute mk.sh to generate image.iso
+2,执行mk.sh生成image.so
 
-3,create vmware vm with image.iso as CD, cf.vmdk as SATA harddisk
+3,使用image.iso作为CD，cf.vmdk作为SATA硬盘创建vmware虚拟机
 
 
 NOTE:
 
-1,iso/isolinux.cfg  is the parameter to linux kernel
+1,iso/isolinux.cfg  存放传给linux内核的参数
 
-2,gdb is contained 
+2,fs目录中已经包含了用户态调试工具gdb
 
-3,kdb is enable(use keyboad), can modify iso/isolinux.cfg to change to serial port
+3,内核调试工具kdb默认使能了，可以修改/iso/isolinux.cfg 关闭或设置串口作为终端
 
 
 
