@@ -14,7 +14,7 @@ rm -f iso/initrd.img
 #first, generate initrd
 
 pushd fs
-find . | cpio -H newc  -R root.root -o > ../iso/initrd.img
+find . | sudo  cpio -H newc  -R root.root -o > ../iso/initrd.img
 popd
 
 
