@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEBUG="quiet"
-QEMU_CMD="qemu-system-x86_64"
+QEMU_CMD="/usr/local/bin/qemu-system-x86_64"
 TEST_ISO=0
 GRA=" -nographic"
 
@@ -34,13 +34,13 @@ done
 [ ! -f cf.qcow2 ] &&  qemu-img convert -f vmdk cf.vmdk  -O qcow2 cf.vmdk cf.qcow2 
 
 if [ ${TEST_ISO} != 1 ] ; then
-${QEMU_CMD} -m 256M -kernel iso/linux ${GRA}  	\
+sudo ${QEMU_CMD} -m 256M -kernel iso/linux ${GRA}  	\
 	-net nic,vlan=0 -net tap,vlan=0 		\
 	-hda cf.qcow2 -initrd iso/initrd.img		\
-	 -append "console=ttyS0 rdinit=/sbin/init kgdboc=ttyS0 ${DEBUG} "  
+	 -append "rootfstype=ramfs console=ttyS0 rdinit=/sbin/init kgdboc=ttyS0 ${DEBUG} "  
 else
 
-${QEMU_CMD} -m 256M  -cdrom image.iso -net nic,vlan=0 -net tap,vlan=0 -hda cf.qcow2 -boot d ${GRA}
+sudo ${QEMU_CMD} -m 256M  -cdrom image.iso -net nic,vlan=0 -net tap,vlan=0 -hda cf.qcow2 -boot d ${GRA}
 fi
 
 rm -f cf.qcow2
